@@ -1,7 +1,7 @@
 name: dashed_container
 description: A Dashed Container plugin for Flutter.
 version: 1.0.0
-author: phuc.chau
+author: phuc.chau <chauminhphuc.it@gmail.com>
 homepage: https://github.com/phucgaoxam/dashed_container
 
 environment:

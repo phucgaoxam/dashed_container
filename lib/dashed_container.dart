@@ -3,7 +3,6 @@ library dashed_container;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 part 'dash_path_painter.dart';
 
