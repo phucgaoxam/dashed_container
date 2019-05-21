@@ -11,7 +11,7 @@ To use plugin, just import package `import 'package:dashed_container/dashed_cont
 ## Example
 You can check example directory to know how to use it like the demo image.
 
-```
+```dart
     import 'package:flutter/material.dart';
     import 'package:dashed_container/dashed_container.dart';
 
