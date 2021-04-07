@@ -24,7 +24,7 @@ class DashedContainer extends StatelessWidget {
   final BoxShape boxShape;
 
   DashedContainer({
-    @required this.child,
+    required this.child,
     this.dashColor = Colors.black,
     this.strokeWidth = 1.0,
     this.blankLength = 5.0,

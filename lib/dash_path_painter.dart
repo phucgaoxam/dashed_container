@@ -2,13 +2,13 @@ part of dashed_container;
 
 class DashPathPainter extends CustomPainter {
   final Paint mPaint;
-  final double blankWidth;
-  final double dashedWidth;
-  final double borderRadius;
-  final BoxShape boxShape;
+  final double? blankWidth;
+  final double? dashedWidth;
+  final double? borderRadius;
+  final BoxShape? boxShape;
 
   DashPathPainter({
-    @required this.mPaint,
+    required this.mPaint,
     this.blankWidth,
     this.dashedWidth,
     this.borderRadius,
@@ -21,13 +21,13 @@ class DashPathPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Path p;
-    double bRadius = borderRadius;
+    double? bRadius = borderRadius;
 
     if (boxShape == BoxShape.rectangle) {
       if (bRadius == 0)
         p = Path()..addRect(Rect.fromLTWH(0.0, 0.0, size.width, size.height));
       else {
-        Radius radius = Radius.circular(bRadius);
+        Radius radius = Radius.circular(bRadius!);
         p = Path()
           ..addRRect(
             RRect.fromRectAndCorners(
@@ -56,8 +56,8 @@ class DashPathPainter extends CustomPainter {
     canvas.drawPath(
       dashPath(
         p,
-        dashArray: CircularIntervalList<double>(
-          <double>[
+        dashArray: CircularIntervalList<double?>(
+          <double?>[
             dashedWidth,
             blankWidth,
           ],
@@ -79,13 +79,10 @@ class DashPathPainter extends CustomPainter {
 /// that is an empty path will return an empty path.
 Path dashPath(
   Path source, {
-  @required CircularIntervalList<double> dashArray,
-  DashOffset dashOffset,
+  required CircularIntervalList<double?> dashArray,
+  DashOffset? dashOffset,
 }) {
   assert(dashArray != null);
-  if (source == null) {
-    return null;
-  }
 
   dashOffset = dashOffset ?? const DashOffset.absolute(0.0);
   // TODO: Is there some way to determine how much of a path would be visible today?
@@ -95,7 +92,7 @@ Path dashPath(
     double distance = dashOffset._calculate(metric.length);
     bool draw = true;
     while (distance < metric.length) {
-      final double len = dashArray.next;
+      final double len = dashArray.next!;
       if (draw) {
         dest.addPath(metric.extractPath(distance, distance + len), Offset.zero);
       }
