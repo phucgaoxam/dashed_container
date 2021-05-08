@@ -13,7 +13,7 @@ class DashOffset {
   /// `percentage` will be clamped between 0.0 and 1.0; null will be converted
   /// to 0.0.
   DashOffset.percentage(double percentage)
-      : _rawVal = percentage.clamp(0.0, 1.0) ?? 0.0,
+      : _rawVal = percentage.clamp(0.0, 1.0),
         _dashOffsetType = _DashOffsetType.Percentage;
 
   /// Create a DashOffset that will be measured in terms of absolute pixels
@@ -21,14 +21,16 @@ class DashOffset {
   ///
   /// `start` will be coerced to 0.0 if null.
   const DashOffset.absolute(double start)
-      : _rawVal = start ?? 0.0,
+      : _rawVal = start,
         _dashOffsetType = _DashOffsetType.Absolute;
 
   final double _rawVal;
   final _DashOffsetType _dashOffsetType;
 
   double _calculate(double length) {
-    return _dashOffsetType == _DashOffsetType.Absolute ? _rawVal : length * _rawVal;
+    return _dashOffsetType == _DashOffsetType.Absolute
+        ? _rawVal
+        : length * _rawVal;
   }
 }
 
